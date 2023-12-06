@@ -32,6 +32,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      - name: Display workspace
+        run: ls -R ${{ github.workspace }}
       - name: Run make_html.sh
         run: |
           chmod +x ${{ github.workspace }}/make_html.sh
