@@ -25,9 +25,5 @@ jobs:
         run: dotnet build --no-restore
       - name: Test
         run: dotnet test --no-build --verbosity normal
-      - name: Display workspace
-        run: ls -R ${{ github.workspace }}
-      - name: Run make_html.sh
-        run: |
-          chmod +x ${{ github.workspace }}/make_html.sh
-          ${{ github.workspace }}/make_html.sh
+      - name: Execute make_html.sh
+        run: sh make_html.sh FlatBibio/bin/Debug/net8.0/FlatBiblio
