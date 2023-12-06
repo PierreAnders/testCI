@@ -13,7 +13,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
@@ -26,12 +27,12 @@ jobs:
         run: dotnet test --no-build --verbosity normal
 
   generate_html:
-    needs: build  # Cette étape dépend de la finition de l'étape "build"
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Run make_html.sh
         run: |
-          chmod +x make_html.sh
-          ./make_html.sh
+          chmod +x ${{ github.workspace }}/make_html.sh
+          ${{ github.workspace }}/make_html.sh
